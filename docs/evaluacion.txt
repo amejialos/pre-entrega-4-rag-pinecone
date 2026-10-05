@@ -1,0 +1,57 @@
+=== Modo: hibrido ===
+[OK ] P1: ¿Qué significa el error CAU-417 y cómo evito que el flujo falle por eso?
+       esperado=caudal-errores | Recall@5=1 | Precision@5=0.60 (máx 0.60)
+       top-5: caudal-errores, caudal-instalacion, caudal-errores, caudal-errores, caudal-rendimiento
+[OK ] P2: ¿Cómo evito que un slot de replicación abandonado llene el disco del servidor de base de datos?
+       esperado=caudal-conectores | Recall@5=1 | Precision@5=0.20 (máx 0.60)
+       top-5: caudal-conectores, caudal-errores, caudal-changelog, caudal-errores, caudal-seguridad
+[OK ] P3: La fuente produce datos más rápido de lo que el destino puede escribirlos, ¿qué mecanismo evita que se sature?
+       esperado=caudal-rendimiento | Recall@5=1 | Precision@5=0.40 (máx 0.60)
+       top-5: caudal-rendimiento, caudal-rendimiento, caudal-instalacion, caudal-errores, caudal-errores
+[OK ] P4: ¿Qué versión mínima de Python necesito para usar la librería y por qué?
+       esperado=caudal-instalacion | Recall@5=1 | Precision@5=0.80 (máx 1.00)
+       top-5: caudal-instalacion, caudal-changelog, caudal-changelog, caudal-conectores, caudal-changelog
+[OK ] P5: ¿Cómo protejo la información sensible que queda guardada en los checkpoints?
+       esperado=caudal-seguridad | Recall@5=1 | Precision@5=0.60 (máx 0.60)
+       top-5: caudal-api-flujos, caudal-seguridad, caudal-seguridad, caudal-instalacion, caudal-seguridad
+
+=== Modo: vector ===
+[OK ] P1: ¿Qué significa el error CAU-417 y cómo evito que el flujo falle por eso?
+       esperado=caudal-errores | Recall@5=1 | Precision@5=0.60 (máx 0.60)
+       top-5: caudal-errores, caudal-errores, caudal-errores, caudal-instalacion, caudal-rendimiento
+[OK ] P2: ¿Cómo evito que un slot de replicación abandonado llene el disco del servidor de base de datos?
+       esperado=caudal-conectores | Recall@5=1 | Precision@5=0.20 (máx 0.60)
+       top-5: caudal-conectores, caudal-errores, caudal-errores, caudal-api-flujos, caudal-rendimiento
+[OK ] P3: La fuente produce datos más rápido de lo que el destino puede escribirlos, ¿qué mecanismo evita que se sature?
+       esperado=caudal-rendimiento | Recall@5=1 | Precision@5=0.40 (máx 0.60)
+       top-5: caudal-rendimiento, caudal-errores, caudal-errores, caudal-rendimiento, caudal-conectores
+[OK ] P4: ¿Qué versión mínima de Python necesito para usar la librería y por qué?
+       esperado=caudal-instalacion | Recall@5=1 | Precision@5=0.80 (máx 1.00)
+       top-5: caudal-instalacion, caudal-changelog, caudal-changelog, caudal-changelog, caudal-rendimiento
+[OK ] P5: ¿Cómo protejo la información sensible que queda guardada en los checkpoints?
+       esperado=caudal-seguridad | Recall@5=1 | Precision@5=0.60 (máx 0.60)
+       top-5: caudal-seguridad, caudal-api-flujos, caudal-seguridad, caudal-seguridad, caudal-conectores
+
+=== Modo: bm25 ===
+[OK ] P1: ¿Qué significa el error CAU-417 y cómo evito que el flujo falle por eso?
+       esperado=caudal-errores | Recall@5=1 | Precision@5=0.40 (máx 0.60)
+       top-5: caudal-errores, caudal-rendimiento, caudal-instalacion, caudal-api-flujos, caudal-errores
+[OK ] P2: ¿Cómo evito que un slot de replicación abandonado llene el disco del servidor de base de datos?
+       esperado=caudal-conectores | Recall@5=1 | Precision@5=0.20 (máx 0.60)
+       top-5: caudal-conectores, caudal-changelog, caudal-seguridad, caudal-instalacion, caudal-rendimiento
+[OK ] P3: La fuente produce datos más rápido de lo que el destino puede escribirlos, ¿qué mecanismo evita que se sature?
+       esperado=caudal-rendimiento | Recall@5=1 | Precision@5=0.40 (máx 0.60)
+       top-5: caudal-instalacion, caudal-rendimiento, caudal-conectores, caudal-rendimiento, caudal-seguridad
+[OK ] P4: ¿Qué versión mínima de Python necesito para usar la librería y por qué?
+       esperado=caudal-instalacion | Recall@5=1 | Precision@5=0.40 (máx 1.00)
+       top-5: caudal-changelog, caudal-instalacion, caudal-conectores, caudal-seguridad, caudal-api-flujos
+[OK ] P5: ¿Cómo protejo la información sensible que queda guardada en los checkpoints?
+       esperado=caudal-seguridad | Recall@5=1 | Precision@5=0.40 (máx 0.60)
+       top-5: caudal-api-flujos, caudal-instalacion, caudal-seguridad, caudal-changelog, caudal-seguridad
+
+=== Resumen (5 preguntas, k=5) ===
+modo      |  Recall@5 |  Precision@5 | Precisión máx.
+------------------------------------------------------
+hibrido   |      1.00 |         0.52 |           0.68
+vector    |      1.00 |         0.52 |           0.68
+bm25      |      1.00 |         0.36 |           0.68

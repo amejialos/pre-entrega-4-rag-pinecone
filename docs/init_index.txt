@@ -1,0 +1,10 @@
+$ uv run python init_index.py   # primera corrida
+INFO Creando índice serverless 'pre-entrega-4' (aws/us-east-1, dimension=1536, metric=cosine)...
+INFO Índice 'pre-entrega-4' creado y listo.
+Índice: pre-entrega-4 | creado ahora: sí
+Namespace que usa el sistema: caudal-docs
+
+$ uv run python init_index.py   # segunda corrida
+INFO El índice 'pre-entrega-4' ya existe (dimension=1536, metric=cosine): no se recrea.
+Índice: pre-entrega-4 | creado ahora: no (ya existía)
+Namespace que usa el sistema: caudal-docs
