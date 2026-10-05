@@ -13,6 +13,7 @@ Uso: uv run python ingest.py [--reset]
 
 import argparse
 import logging
+import sys
 import time
 from typing import Any
 
@@ -98,7 +99,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Ingesta de data/ en Pinecone")
     parser.add_argument("--reset", action="store_true", help="vaciar el namespace antes de subir")
     args = parser.parse_args()
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s", stream=sys.stdout)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
 
     settings = load_settings()
     pc = build_pinecone_client(settings)

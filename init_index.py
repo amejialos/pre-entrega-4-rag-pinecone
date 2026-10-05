@@ -8,6 +8,7 @@ el mismatch de dimensiones, que recién aparece al primer upsert).
 """
 
 import logging
+import sys
 import time
 from typing import Any
 
@@ -77,7 +78,8 @@ def _wait_until_ready(pc: Any, name: str, timeout: float, poll_interval: float) 
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s", stream=sys.stdout)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
     settings = load_settings()
     pc = build_pinecone_client(settings)
     created = ensure_index(pc, settings.index_name)
