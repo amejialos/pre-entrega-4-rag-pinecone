@@ -1,0 +1,18 @@
+# Secretos: nunca subir las API keys
+.env
+
+# Entorno virtual
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Editores y sistema
+.vscode/
+.idea/
+.DS_Store
+.claude/
