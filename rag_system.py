@@ -24,6 +24,9 @@ from corpus import load_chunks
 
 Mode = Literal["hibrido", "vector", "bm25"]
 TOP_K = 5
+# Pinecone guarda todos los números de la metadata como float (page=1 vuelve como 1.0);
+# BM25 los conserva como int. Se normalizan para que ambos caminos devuelvan lo mismo.
+_INT_FIELDS = ("page", "chunk_index")
 DEFAULT_WEIGHTS = (0.5, 0.5)  # (vector, bm25)
 
 # Stopwords mínimas en español: BM25 ya penaliza términos frecuentes con el IDF, pero
@@ -42,6 +45,13 @@ def tokenize_es(text: str) -> list[str]:
     normalized = unicodedata.normalize("NFKD", text.lower())
     ascii_text = "".join(ch for ch in normalized if not unicodedata.combining(ch))
     return [token for token in _TOKEN.findall(ascii_text) if token not in _STOPWORDS]
+
+
+def _normalize(doc: Document) -> Document:
+    for field in _INT_FIELDS:
+        if isinstance(doc.metadata.get(field), float):
+            doc.metadata[field] = int(doc.metadata[field])
+    return doc
 
 
 class RAGSystem:
@@ -74,7 +84,7 @@ class RAGSystem:
             raise ValueError("La consulta está vacía.")
         retriever = {"hibrido": self.ensemble, "vector": self.vector_retriever, "bm25": self.bm25_retriever}[mode]
         # El ensemble devuelve la unión de las dos listas (hasta 2k): nos quedamos con k.
-        return retriever.invoke(query)[: self.k]
+        return [_normalize(doc) for doc in retriever.invoke(query)[: self.k]]
 
     @classmethod
     def from_pinecone(

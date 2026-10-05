@@ -65,6 +65,13 @@ def test_texto_recuperado_de_pinecone_viene_de_la_metadata(rag, chunks):
         assert doc.page_content == by_id[doc.metadata["chunk_id"]]
 
 
+def test_pagina_vuelve_como_int_aunque_pinecone_la_guarde_como_float(rag):
+    for mode in ("vector", "hibrido"):
+        for doc in rag.retrieve("checkpoints cifrados", mode=mode):
+            assert type(doc.metadata["page"]) is int
+            assert type(doc.metadata["chunk_index"]) is int
+
+
 def test_consulta_vacia_falla(rag):
     with pytest.raises(ValueError):
         rag.retrieve("   ")

@@ -28,7 +28,13 @@ class FakeIndex:
         self.upsert_calls.append({"vectors": vectors, "namespace": namespace})
         store = self.namespaces.setdefault(namespace, {})
         for record in vectors:
-            store[record["id"]] = copy.deepcopy(record)
+            stored = copy.deepcopy(record)
+            # Como Pinecone: los números de la metadata vuelven como float.
+            stored["metadata"] = {
+                key: float(value) if isinstance(value, int) and not isinstance(value, bool) else value
+                for key, value in stored["metadata"].items()
+            }
+            store[record["id"]] = stored
         return {"upserted_count": len(vectors)}
 
     def query(self, vector: list[float], top_k: int, include_metadata: bool, namespace: str | None, filter: Any = None) -> dict:
