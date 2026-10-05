@@ -1,0 +1,23 @@
+[
+  {
+    "pregunta": "¿Qué significa el error CAU-417 y cómo evito que el flujo falle por eso?",
+    "documento_id_esperado": "caudal-errores"
+  },
+  {
+    "pregunta": "¿Cómo evito que un slot de replicación abandonado llene el disco del servidor de base de datos?",
+    "documento_id_esperado": "caudal-conectores"
+  },
+  {
+    "pregunta": "La fuente produce datos más rápido de lo que el destino puede escribirlos, ¿qué mecanismo evita que se sature?",
+    "documento_id_esperado": "caudal-rendimiento"
+  },
+  {
+    "pregunta": "¿Qué versión mínima de Python necesito para usar la librería y por qué?",
+    "documento_id_esperado": "caudal-instalacion",
+    "documentos_relevantes": ["caudal-instalacion", "caudal-changelog"]
+  },
+  {
+    "pregunta": "¿Cómo protejo la información sensible que queda guardada en los checkpoints?",
+    "documento_id_esperado": "caudal-seguridad"
+  }
+]
