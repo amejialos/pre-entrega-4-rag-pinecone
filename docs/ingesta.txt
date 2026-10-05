@@ -1,0 +1,14 @@
+$ uv run python ingest.py --reset
+INFO El índice 'pre-entrega-4' ya existe (dimension=1536, metric=cosine): no se recrea.
+21 chunks de 7 documentos: caudal-api-flujos, caudal-changelog, caudal-conectores, caudal-errores, caudal-instalacion, caudal-rendimiento, caudal-seguridad
+INFO Namespace 'caudal-docs' vaciado.
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/embeddings "HTTP/1.1 200 OK"
+INFO Subidos 21/21 registros al namespace 'caudal-docs'.
+Upsert: 21 vectores | visibles en pre-entrega-4/caudal-docs: 21
+
+$ uv run python ingest.py   # segunda vez: mismos ids, no duplica
+INFO El índice 'pre-entrega-4' ya existe (dimension=1536, metric=cosine): no se recrea.
+21 chunks de 7 documentos: caudal-api-flujos, caudal-changelog, caudal-conectores, caudal-errores, caudal-instalacion, caudal-rendimiento, caudal-seguridad
+INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/embeddings "HTTP/1.1 200 OK"
+INFO Subidos 21/21 registros al namespace 'caudal-docs'.
+Upsert: 21 vectores | visibles en pre-entrega-4/caudal-docs: 21
